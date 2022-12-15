@@ -51,7 +51,6 @@ echo -e "${BGreen}Installing bspwm [DONE]${NC}"
 echo "......................."
 echo -e "${BYellow}Installing polybar...${NC}"
 sudo apt install polybar
-sudo apt install kitty zsh zsh-syntax-highlighting zsh-autosuggestions vim neovim nano lsd bat rofi mc feh mlocate zip unzip imagemagick neofetch picom scrub fzf
 echo -e "${BGreen}Installing polybar [DONE]${NC}"
 
 echo -e "${BYellow}Installing polybar themes...${NC}"
@@ -60,6 +59,15 @@ cd polybar-themes
 chmod +x setup.sh
 ./setup.sh
 echo -e "${BGreen} Installing polybar themes...[DONE]${NC}"
+
+echo -e "${BYellow}Installing adittional tools...${NC}"
+sudo apt install kitty zsh zsh-syntax-highlighting zsh-autosuggestions vim neovim nano bat rofi mc feh mlocate zip unzip imagemagick neofetch picom scrub fzf -y
+echo -e "${BGreen} Installing additional tools [DONE]${NC}"
+
+echo -e "${BYellow}Installing lsd...${NC}"
+wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_amd64.deb
+sudo apt install ./lsd_0.23.1_amd64.deb
+echo -e "${BGreen} Installing lsd [DONE]${NC}"
 
 echo -e "${BYellow}Installing powerlevel10k...${NC}"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
