@@ -5,6 +5,7 @@ picom --config ~/.config/picom/picom.conf &
 feh --bg-fill /home/tungur/.config/wallpaper/Cthulhu_Lovecraft.jpg &
 wmname LG3D &
 ~/.config/polybar/launch.sh --cuts &
+vmware-user-suid-wrapper &  #enable vmware copy & paste
 
 bspc config pointer_modifier mod1
 

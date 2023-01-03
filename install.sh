@@ -61,7 +61,7 @@ chmod +x setup.sh
 echo -e "${BGreen} Installing polybar themes...[DONE]${NC}"
 
 echo -e "${BYellow}Installing adittional tools...${NC}"
-sudo apt install kitty zsh zsh-syntax-highlighting zsh-autosuggestions vim neovim nano bat rofi mc feh mlocate zip unzip imagemagick neofetch picom scrub fzf -y
+sudo apt install kitty zsh zsh-syntax-highlighting zsh-autosuggestions vim neovim nano bat rofi mc feh mlocate zip unzip imagemagick neofetch picom scrub fzf cherrytree -y
 echo -e "${BGreen} Installing additional tools [DONE]${NC}"
 
 echo -e "${BYellow}Installing lsd...${NC}"
@@ -101,7 +101,7 @@ cp -f $working_path/.p10k.zsh ~/.p10k.zsh
 echo -e "${BGreen}Coping .config files...[DONE]${NC}"
 
 echo -e "${BYellow}Font instalation...${NC}"
-echo "Creating TTF and OTF fonts dirs..."  
+echo "Creating TTF and OTF fonts dirs..."
 TTF_FONT_DIR="/usr/local/share/fonts/ttf/"
 if [ ! -d "$TTF_FONT_DIR" ]; then
   sudo mkdir -p /usr/local/share/fonts/ttf/
@@ -111,14 +111,17 @@ if [ ! -d "$OTF_FONT_DIR" ]; then
   sudo mkdir -p /usr/local/share/fonts/otf/
 fi
 
-echo "Installing fonts dirs..."  
+echo "Installing fonts dirs..."
 sudo cp -r $working_path/fonts/ttf/* /usr/local/share/fonts/ttf/
 sudo cp -r $working_path/fonts/otf/* /usr/local/share/fonts/otf/
 echo "Updating fonts cache..."
 fc-cache -f
 echo -e "${BGreen}Font instalation [DONE]${NC}"
 
-#TODO: equal ROOT USER
+echo "Change login background..."
+sudo ln -snf /usr/share/backgrounds/kali/kali-ascii-16x9.png /usr/share/desktop-base/kali-theme/login/background
+echo -e "${BGreen}Change login background [DONE]${NC}"
+
 echo -e "${BYellow}Configuring root console...${NC}"
 sudo ln -s -f /home/$user/.zshrc /root/.zshrc
 sudo ln -s -f /home/$user/.p10k.zsh /root/.p10k.zsh

@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + d
-	rofi -show run
+	rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/grayblocks/scripts/rofi/launcher.rasi
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -56,7 +56,7 @@ super + ctrl + {m,x,y,z}
 
 # focus the node in the given direction
 #super + {_,shift + }{h,j,k,l}
-#	bspc node -{f,s} {west,south,north,east}
+#      bspc node -{f,s} {west,south,north,east}
 
 super + {_,shift + }{Left,Down,Up,Right}
        bspc node -{f,s} {west,south,north,east}
@@ -127,7 +127,7 @@ super + ctrl + {Left,Down,Up,Right}
 
 # Custom move/resize
 alt + super + {Left,Down,Up,Right}
-	/home/s4vitar/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
+	/home/tungur/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
 
 
 # ---------------------------------------------
@@ -135,11 +135,9 @@ alt + super + {Left,Down,Up,Right}
 # ---------------------------------------------
 
 # Google-Chrome
-
-super + shift + g
-	google-chrome
+super + shift + f
+	firefox-esr
 
 # Open Burpsuite Professional
-
-super + ctrl + b
-	gksudo burp
+#super + ctrl + b
+#	gksudo burp
