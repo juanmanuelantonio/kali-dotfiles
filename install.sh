@@ -81,7 +81,7 @@ if [ ! -d "$TTF_FONT_DIR" ]; then
 fi
 
 echo "Installing fonts dirs..."
-sudo cp -r $working_path/fonts/otf/* /usr/local/share/fonts/otf/
+sudo cp -r $working_path/fonts/ttf/* /usr/local/share/fonts/ttf/
 echo "Updating fonts cache..."
 fc-cache -f
 echo -e "${BGreen}Font instalation [DONE]${NC}"
