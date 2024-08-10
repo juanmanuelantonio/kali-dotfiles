@@ -30,7 +30,7 @@ BWhite='\033[1;37m'       # White
 
 working_path=$(pwd)
 user=$(whoami)
-echo -e "${BGreen}Welcome ${BRed}$user${BGreen}! you will configure your desktop with BSPWM"
+echo -e "${BGreen}Welcome ${BRed}$user${BGreen}! you will configure your kali desktop"
 echo -e "${BYellow}FIRST! Perform a full system upgrade --> press [Enter] key to continue..."
 echo -e "-------------------------------------------------------------------------${NC}"
 pause
@@ -43,39 +43,13 @@ echo -e "#######################################################################
 echo -e "${BGreen}Press [Enter] key to continue...${NC}"
 pause
 
-# Install bspwm dependencies
-echo -e "${BYellow}Installing bspwm...${NC}"
-sudo apt install libxcb-xinerama0-dev libxcb-icccm4-dev libxcb-randr0-dev libxcb-util0-dev libxcb-ewmh-dev libxcb-keysyms1-dev libxcb-shape0-dev
-sudo apt install bspwm
-echo -e "${BGreen}Installing bspwm [DONE]${NC}"
-echo "......................."
-echo -e "${BYellow}Installing polybar...${NC}"
-sudo apt install polybar
-echo -e "${BGreen}Installing polybar [DONE]${NC}"
-
-echo -e "${BYellow}Installing polybar themes...${NC}"
-git clone --depth=1 https://github.com/adi1090x/polybar-themes.git
-cd polybar-themes
-chmod +x setup.sh
-./setup.sh
-echo -e "${BGreen} Installing polybar themes...[DONE]${NC}"
-
-echo -e "${BYellow}Installing adittional tools...${NC}"
-sudo apt install kitty zsh zsh-syntax-highlighting zsh-autosuggestions vim neovim nano bat rofi mc feh mlocate zip unzip imagemagick neofetch picom scrub fzf cherrytree -y
-echo -e "${BGreen} Installing additional tools [DONE]${NC}"
-
-echo -e "${BYellow}Installing lsd...${NC}"
-wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_amd64.deb
-sudo apt install ./lsd_0.23.1_amd64.deb
-echo -e "${BGreen} Installing lsd [DONE]${NC}"
+echo -e "${BYellow}Installing tools...${NC}"
+sudo apt install kitty zsh zsh-syntax-highlighting zsh-autosuggestions vim neovim nano bat lsd mc zip unzip imagemagick neofetch scrub fzf -y
+echo -e "${BGreen} Installing tools [DONE]${NC}"
 
 echo -e "${BYellow}Installing powerlevel10k...${NC}"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 echo -e "${BGreen}Installing powerlevel10k [DONE]${NC}"
-
-echo -e "${BYellow}Installing neovim theme...${NC}"
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-echo -e "${BGreen}Installing neovim theme [DONE]${NC}"
 
 echo -e "${BYellow}Setting ZSH as user & root shell...${NC}"
 sudo usermod --shell /bin/zsh $user
@@ -96,7 +70,6 @@ echo -e "${BYellow}Coping .config files...${NC}"
 mkdir -p ~/.config
 cp -rf $working_path/.config/* ~/.config/
 cp -f $working_path/.zshrc ~/.zshrc
-cp -f $working_path/.xinitrc ~/.xinitrc
 cp -f $working_path/.p10k.zsh ~/.p10k.zsh
 echo -e "${BGreen}Coping .config files...[DONE]${NC}"
 
@@ -106,21 +79,12 @@ TTF_FONT_DIR="/usr/local/share/fonts/ttf/"
 if [ ! -d "$TTF_FONT_DIR" ]; then
   sudo mkdir -p /usr/local/share/fonts/ttf/
 fi
-OTF_FONT_DIR="/usr/local/share/fonts/otf/"
-if [ ! -d "$OTF_FONT_DIR" ]; then
-  sudo mkdir -p /usr/local/share/fonts/otf/
-fi
 
 echo "Installing fonts dirs..."
-sudo cp -r $working_path/fonts/ttf/* /usr/local/share/fonts/ttf/
 sudo cp -r $working_path/fonts/otf/* /usr/local/share/fonts/otf/
 echo "Updating fonts cache..."
 fc-cache -f
 echo -e "${BGreen}Font instalation [DONE]${NC}"
-
-echo "Change login background..."
-sudo ln -snf /usr/share/backgrounds/kali/kali-ascii-16x9.png /usr/share/desktop-base/kali-theme/login/background
-echo -e "${BGreen}Change login background [DONE]${NC}"
 
 echo -e "${BYellow}Configuring root console...${NC}"
 sudo ln -s -f /home/$user/.zshrc /root/.zshrc
@@ -128,8 +92,10 @@ sudo ln -s -f /home/$user/.p10k.zsh /root/.p10k.zsh
 echo -e "${BGreen}Configuring root console [DONE]${NC}"
 
 echo -e "${BGreen}###########################################################################"
-echo -e "Ok, all stuff done, please reeboot the system"
+echo -e "Ok, all stuff done, please remeber to:"
+echo -e "  1) set kitty as default terminal (Settings Manager -> Default Application -> Utilities -> Terminal Emulator)"
+echo -e "  2) set your custom wallpaper from .config/wallpaper"
 echo -e "###########################################################################"
-echo -e "${BRed}Press [Enter] key to reboot"
+echo -e "${BRed}Reboot your system..."
+
 pause
-sudo reboot
